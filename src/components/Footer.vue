@@ -20,7 +20,6 @@ export default {
     display: flex;
     height: 200px;
     justify-content: center;
-    position: absolute;
     width: 100%;
   }
 </style>

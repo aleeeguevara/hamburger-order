@@ -2,30 +2,30 @@
   <div>
     <p>Message Component</p>
     <div>
-      <form id="burger-form">
+      <form id="burger-form" @submit="createBurger">
           <label for="name" class="input-container">Client Name:
             <input type="text" id="name" name="name" v-model="name" placeholder="Type your name">
           </label>
           <label for="bun" class="input-container"> Choose bun:
             <select name="bun" id="bun" v-model="bun">
               <option value="">Select your bun</option>
-              <option value="wholemeal">Wholemeal</option>
+              <option v-for="bun in buns" :key="bun.id" :value="bun.tipo">{{bun.tipo}}</option>
             </select>
           </label>
           <label for="meat" class="input-container"> Choose Meat:
             <select name="meat" id="meat" v-model="meat">
               <option value="">Select your meat</option>
-              <option value="maminha">Maminha</option>
+              <option v-for="meat in meats" :key="meat.id" :value="meat.tipo">{{meat.tipo}}</option>
             </select>
           </label>
-          <div class="input-container" >
-            <label for="optionals" id="optionals-container"> Choose optionals:
-            <div class="checkbox-container">
-              <input type="checkbox" name="optionals" v-model="optional" value="Salami">
-              <span>Salami</span>
+          <label for="optionals" id="optionals-container"> Choose optionals:
+            <div class="input-container">
+              <div class="checkbox-container" v-for="optional in optionalsdata" :key="optional.id" >
+                <input type="checkbox" name="optionals" v-model="optionals" :value="optional.tipo">
+                <span>{{optional.tipo}}</span>
+              </div>
             </div>
-            </label>
-          </div>
+          </label>
         <div class="input-container">
           <input type="submit" class="submit-btn" value="Create my Burger!">
         </div>
@@ -37,6 +37,52 @@
 <script>
 export default {
   name: 'BurgerForm',
+  data() {
+    return {
+      buns: null,
+      meats: null,
+      optionalsdata: null,
+      bun: null,
+      meat: null,
+      optionals: [],
+      msg: null,
+    };
+  },
+  methods: {
+    async getIngridients() {
+      const req = await fetch('http://localhost:3000/ingredientes');
+      const data = await req.json();
+
+      this.buns = data.paes;
+      this.meats = data.carnes;
+      this.optionalsdata = data.opcionais;
+    },
+    async createBurger(e) {
+      e.preventDefault();
+      const data = {
+        nome: this.name,
+        pao: this.bun,
+        carne: this.meat,
+        opcionais: Array.from(this.optionals),
+        status: 'Solicited',
+      };
+
+      const dataJson = JSON.stringify(data);
+
+      const req = await fetch('http://localhost:3000/burgers', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: dataJson,
+      });
+
+      const res = await req.json();
+
+      console.log(res);
+    },
+  },
+  mounted() {
+    this.getIngridients();
+  },
 };
 </script>
 
@@ -59,21 +105,20 @@ export default {
   }
 
   input, select {
-    padding: 5px 310px;
+    padding: 5px 10px;
     margin-top: 15px;
-    width: 300px;
+    width: 400px;
   }
 
-  #optionals-container {
+  .input-container{
+    display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    width: 100%;
   }
+
   .checkbox-container {
-    display: flex;
-    align-items: flex-start;
     width: 50%;
-    margin-bottom: 20px;
+    display: flex;
   }
 
   .checkbox-container span,
@@ -81,6 +126,9 @@ export default {
     margin-left: 6px;
     margin-top: 15px;
     font-weight: bold;
+  }
+  .checkbox-container input {
+    width: 10px;
   }
 
   .submit-btn {

@@ -77,5 +77,93 @@
       "tipo": "Finalizado"
     }
   ],
-  "burgers": []
+  "burgers": [
+    {
+      "nome": "Alexandra",
+      "pao": "3 Queijos",
+      "carne": "Maminha",
+      "opcionais": [
+        "Bacon",
+        "Salame",
+        "Tomate"
+      ],
+      "status": "Solicited",
+      "id": 1
+    },
+    {
+      "nome": "Alexandra Guevara",
+      "pao": "3 Queijos",
+      "carne": "Alcatra",
+      "opcionais": [
+        "Bacon",
+        "Salame",
+        "Tomate",
+        "Pepino"
+      ],
+      "status": "Solicited",
+      "id": 2
+    },
+    {
+      "nome": "Alexandra Guevara",
+      "pao": "3 Queijos",
+      "carne": "Alcatra",
+      "opcionais": [
+        "Bacon",
+        "Salame",
+        "Tomate",
+        "Pepino"
+      ],
+      "status": "Solicited",
+      "id": 3
+    },
+    {
+      "nome": "Alexandra",
+      "pao": "Italiano Branco",
+      "carne": "Alcatra",
+      "opcionais": [
+        "Bacon",
+        "Salame",
+        "Tomate",
+        "Pepino"
+      ],
+      "status": "Solicited",
+      "id": 4
+    },
+    {
+      "nome": "Alexandra",
+      "pao": "Parmesão e Orégano",
+      "carne": "Maminha",
+      "opcionais": [
+        "Bacon",
+        "Salame",
+        "Cebola roxa"
+      ],
+      "status": "Solicited",
+      "id": 5
+    },
+    {
+      "nome": "alexandra bruckner",
+      "pao": "Italiano Branco",
+      "carne": "Alcatra",
+      "opcionais": [
+        "Bacon",
+        "Salame",
+        "Tomate"
+      ],
+      "status": "Solicited",
+      "id": 6
+    },
+    {
+      "nome": "Alexandra Guevara",
+      "pao": "3 Queijos",
+      "carne": "Maminha",
+      "opcionais": [
+        "Bacon",
+        "Salame",
+        "Cebola roxa"
+      ],
+      "status": "Solicited",
+      "id": 7
+    }
+  ]
 }

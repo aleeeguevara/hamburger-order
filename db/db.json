@@ -86,7 +86,7 @@
         "Salame",
         "Cebola roxa"
       ],
-      "status": "Em produção",
+      "status": "Finalizado",
       "id": 6
     },
     {
@@ -98,7 +98,7 @@
         "Cebola roxa",
         "Pepino"
       ],
-      "status": "Solicitado",
+      "status": "Em produção",
       "id": 7
     },
     {
@@ -111,6 +111,39 @@
       ],
       "status": "Solicitado",
       "id": 8
+    },
+    {
+      "nome": "Luana",
+      "pao": "Italiano Branco",
+      "carne": "Maminha",
+      "opcionais": [
+        "Bacon",
+        "Tomate"
+      ],
+      "status": "Solicitado",
+      "id": 9
+    },
+    {
+      "nome": "Pedro",
+      "pao": "Parmesão e Orégano",
+      "carne": "Picanha",
+      "opcionais": [
+        "Pepino",
+        "Tomate"
+      ],
+      "status": "Solicitado",
+      "id": 10
+    },
+    {
+      "nome": "Laura",
+      "pao": "Parmesão e Orégano",
+      "carne": "Picanha",
+      "opcionais": [
+        "Bacon",
+        "Cebola roxa"
+      ],
+      "status": "Em produção",
+      "id": 11
     }
   ]
 }

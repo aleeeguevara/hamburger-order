@@ -86,7 +86,7 @@ export default {
       this.name = '';
       this.bun = '';
       this.meat = '';
-      this.optionals = '';
+      this.optionals = [];
     },
   },
   mounted() {

@@ -1,5 +1,6 @@
 <template>
   <div class="burger-table">
+    <MessageComponent :msg="msg" v-show="msg"/>
     <div>
       <div id="burger-table-heading">
         <div class="order-id">#:</div>
@@ -41,6 +42,8 @@
 </template>
 
 <script>
+import MessageComponent from './Message.vue';
+
 export default {
   name: 'DashboardComponent',
   data() {
@@ -48,7 +51,11 @@ export default {
       orders: null,
       order_id: null,
       status: [],
+      msg: '',
     };
+  },
+  components: {
+    MessageComponent,
   },
   methods: {
     async getList() {
@@ -70,7 +77,13 @@ export default {
         headers: { 'Content-Type': 'application/json' },
         body: dataJson,
       });
-      console.log('alterar', req.json());
+      const res = await req.json();
+      console.log('res', res);
+
+      this.msg = `The order n°${res.id} was updated to ${res.status}!`;
+      setTimeout(() => {
+        this.msg = '';
+      }, 3000);
     },
 
     async deleteOrder(id) {
@@ -81,6 +94,10 @@ export default {
       console.log('deletar', res);
 
       this.getList(); // atualização sistema forçada backend renderizar lista sem item
+      this.msg = 'Order deleted successfully';
+      setTimeout(() => {
+        this.msg = '';
+      }, 3000);
     },
   },
   mounted() {

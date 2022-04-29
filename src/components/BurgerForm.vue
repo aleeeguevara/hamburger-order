@@ -41,6 +41,7 @@ export default {
   name: 'BurgerForm',
   data() {
     return {
+      name: null,
       buns: null,
       meats: null,
       optionalsdata: null,
@@ -66,7 +67,7 @@ export default {
         pao: this.bun,
         carne: this.meat,
         opcionais: Array.from(this.optionals),
-        status: 'Solicited',
+        status: 'Solicitado',
       };
 
       const dataJson = JSON.stringify(data);

@@ -22,11 +22,18 @@
           </ul>
         </div>
         <div>
-          <select name="status" class="status">
+          <select name="status" class="status" @change="alterStatus($event, order.id)">
             <option value="">Select</option>
-            <option v-for="stat in status" :key="stat.id" value="stat.tipo">{{stat.tipo}}</option>
+            <option
+              v-for="stat in status"
+              :key="stat.id"
+              :value="stat.tipo"
+              :selected="order.status === stat.tipo"
+            >
+              {{stat.tipo}}
+            </option>
           </select>
-          <button class="delete-btn">Cancel</button>
+          <button class="delete-btn" @click="deleteOrder(order.id)">Cancel</button>
         </div>
       </div>
     </div>
@@ -48,17 +55,36 @@ export default {
       const getBurgers = await fetch('http://localhost:3000/burgers');
       const data = await getBurgers.json();
       this.orders = data;
+      this.getStatus();
     },
     async getStatus() {
       const getStat = await fetch('http://localhost:3000/status');
       const dataStatus = await getStat.json();
-      console.log(dataStatus);
       this.status = dataStatus;
+    },
+    async alterStatus(event, id) {
+      const option = event.target.value;
+      const dataJson = JSON.stringify({ status: option });
+      const req = await fetch(`http://localhost:3000/burgers/${id}`, {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: dataJson,
+      });
+      console.log('alterar', req.json());
+    },
+
+    async deleteOrder(id) {
+      const req = await fetch(`http://localhost:3000/burgers/${id}`, {
+        method: 'DELETE',
+      });
+      const res = await req.json();
+      console.log('deletar', res);
+
+      this.getList(); // atualização sistema forçada backend renderizar lista sem item
     },
   },
   mounted() {
     this.getList();
-    this.getStatus();
   },
 };
 </script>
